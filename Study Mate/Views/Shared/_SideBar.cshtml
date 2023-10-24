@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Object> l1 = new List<Object>();
+    l1.Add(new
+    {
+        text = "General",
+        separator = true,
+    });
+    l1.Add(new
+    {
+        text = "Dashboard",
+        url = "/",
+        iconCss = "fa-solid fa-box",
+    });
+    l1.Add(new
+    {
+        text = "Registration",
+        url = "/LR",
+        iconCss = "fa-solid fa-box",
+    });
+    l1.Add(new
+    {
+        text = "Subjects",
+        url = "/Subject",
+        items = new List<object>()
+        {
+        new { text = "Exit", url="/"}
+        },
+        iconCss = "fa-solid fa-folder-closed",
+    });
+    
+    l1.Add(new
+    {
+        text = "Sessions",
+        url = "/Track",
+        iconCss = "fa-solid fa-arrow-right-arrow-left",
+    });
+}
+
+<ejs-sidebar id="sidebar" width="290px" style="padding-top: 20px">
+    <e-content-template>
+
+        <ejs-menu id="menu"
+                  items="l1"
+                  orientation="Vertical"
+                  hamburgerMode></ejs-menu>
+    </e-content-template>
+</ejs-sidebar>

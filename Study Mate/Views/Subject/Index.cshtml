@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Study_Mate.Models.Subject>
+
+@{
+    ViewData["PageTitle"] = "Subjects";
+    ViewData["PageActionText"] = "+ New Subject";
+    ViewData["PageActionUrl"] = "/Subject/Changes";
+
+}
+
+<div class="row">
+    <div class="col-md-14 align-content-center">
+        <ejs-grid id="subjects" dataSource="@Model" gridLines="None"
+                  allowSorting="true" allowPaging="true">
+            <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Subject" field="TitleAndIcon" tem></e-grid-column>
+                <e-grid-column headerText="Type" field="Type" template="#typeTemplate"></e-grid-column>
+                <e-grid-column headerText="Actions" template="#actionTemplate" width="100px"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+</div>
+
+<script id="typeTemplate" type="text/x-template">
+    ${if(Type=="Studied")}
+        <span class="badge bg-success">${Type}</span>
+    ${else}
+        <span class="badge bg-danger">${Type}</span>
+    ${/if}
+</script>
+
+<script id="actionTemplate" type="text/x-template">
+    <div class="d-flex flex-row justify-content-start">
+        <a class="btn btn-sm no-a-decoration" href="/Subject/Changes/${SubjectId}">
+            <i class="fa-solid fa-pen fa-lg"></i>
+        </a>
+        <form action="/Subject/Delete/${SubjectId}" method="post">
+    @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-sm btn-link no-a-decoration"
+            onclick="return confirm(&quot;Are sure to delete this record?&quot;)">
+                <i class="fa-solid fa-trash-can fa-lg text-danger"></i>
+            </button>
+        </form>
+    </div>
+</script>

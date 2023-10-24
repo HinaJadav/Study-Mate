@@ -1,0 +1,50 @@
+﻿@model Study_Mate.Models.Track
+
+@{
+    ViewData["PageTitle"] = Model.TrackId == 0 ? "Add a new session" : "Edit session";
+}
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget p-1">
+        <form asp-action="Changes">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" name="TrackId" value="@Model.TrackId" />
+                <div class="mb-3">
+                    <ejs-datepicker id="Date" ejs-for="Date"
+                                    placeholder="Date" floatLabelType="Always"
+                                    format="MMM-dd-yyyy"></ejs-datepicker>
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            <div class="mb-3">
+                    <ejs-dropdownlist id="ddlSubject" ejs-for="SubjectId"
+                                      dataSource="@ViewBag.Subjects" placeholder="Subject"
+                                      floatLabelType="Always" allowFiltering="true" ignoreAccent="true"
+                                      filterType="Contains" popupHeight="220px">
+                        <e-dropdownlist-fields value="SubjectId" text="TitleAndIcon"></e-dropdownlist-fields>
+                    </ejs-dropdownlist>
+                    <span asp-validation-for="SubjectId" class="text-danger fs-6"></span>
+            </div>
+            <div class="mb-3">
+                    <ejs-numerictextbox id="Amount" ejs-for="Amount"
+                                        placeholder="Amount" floatLabelType="Always"
+                                        min=1 decimals="0"></ejs-numerictextbox>
+                <span asp-validation-for="Amount" class="text-danger" fs-6></span>
+            </div>
+            <div class="mb-3">
+                    <ejs-textbox id="Note" placeholder="Note" ejs-for="Note"
+                                 floatLabelType="Always" multiline="true"></ejs-textbox>
+            </div>
+
+                <ejs-button id="submit" type="submit" content="Submit" cssClass="e-success"></ejs-button>
+        </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
