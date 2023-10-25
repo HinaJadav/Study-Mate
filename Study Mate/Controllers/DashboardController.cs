@@ -69,8 +69,6 @@ namespace Study_Mate.Controllers
                 .ToList();
 
             //Spline chart
-
-            //Income
             List<SplineChartData> GoalSummary = SelectedTracks
                 .Where(i => i.Subject.Type == "Goal")
                 .GroupBy(j => j.Date)
@@ -81,7 +79,6 @@ namespace Study_Mate.Controllers
                 })
                 .ToList();
 
-            //Expense
             List<SplineChartData> StuduiedSummary = SelectedTracks
                 .Where(i => i.Subject.Type == "Studied")
                 .GroupBy(j => j.Date)
@@ -92,7 +89,6 @@ namespace Study_Mate.Controllers
                 })
                 .ToList();
 
-            //Combine Income & Expense
             string[] Last7Days = Enumerable.Range(0, 7)
                 .Select(i => StartDate.AddDays(i).ToString("dd-MMM"))
                 .ToArray();
